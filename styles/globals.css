@@ -1,68 +1,37 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --black: #1a1a1a;
+  --bg: #0a0a0a;
+  --bg-card: #111111;
+  --bg-input: #161616;
+  --border: #1e1e1e;
+  --border-mid: #2a2a2a;
   --white: #ffffff;
-  --off-white: #f8f6f2;
-  --light-gray: #f0ede8;
-  --mid-gray: #c8c4bc;
-  --text-muted: #8a8680;
-  --border: #e4e0da;
-  --accent: #1a1a1a;
-  --sold-bg: #f5f0e8;
-  --sold-color: #9a7a50;
-  --new-bg: #eaf2e8;
-  --new-color: #3d6b35;
-  --women-bg: #f5eaee;
-  --women-color: #8b3d5a;
-  --men-bg: #e8eef5;
-  --men-color: #2d5280;
-  --success-bg: #eaf2e8;
-  --success-color: #2d6b25;
-  --radius: 10px;
-  --radius-sm: 6px;
+  --text-primary: #e0e0e0;
+  --text-muted: #666666;
+  --text-faint: #444444;
+  --blue: #1a6fd4;
+  --blue-hover: #1560bb;
+  --blue-dark: #0d3a6e;
+  --blue-light: #5ba3f0;
+  --radius: 6px;
+  --radius-sm: 4px;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
 }
 
 html {
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
-  color: var(--black);
-  background: var(--off-white);
+  color: var(--text-primary);
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
 }
 
-body {
-  min-height: 100vh;
-}
+body { min-height: 100vh; background: var(--bg); }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
-  font-family: inherit;
-}
-
-input, select, textarea {
-  font-family: inherit;
-}
-
-/* Typography */
-.font-serif {
-  font-family: 'Playfair Display', Georgia, serif;
-}
-
-/* Utility */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-}
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+input, select, textarea { font-family: inherit; }

@@ -23,7 +23,6 @@ export default function Home({ items, pickupSlots }) {
   }
 
   function removeFromCart(id) { setCart(prev => prev.filter(i => i.id !== id)); }
-
   function showToast(msg) { setToast(msg); setTimeout(() => setToast(null), 2500); }
 
   return (
@@ -37,21 +36,22 @@ export default function Home({ items, pickupSlots }) {
           Bag {cart.length > 0 && <span className={styles.cartBadge}>{cart.length}</span>}
         </button>
       </nav>
+
       <header className={styles.hero}>
-        <h1 className={styles.heroTitle + ' font-serif'}>Good clothes,<br/>better prices.</h1>
-        <p className={styles.heroSub}>Every piece is one of a kind. Once it's gone, it's gone. Pickup in Nürnberg Südstadt.</p>
+        <div className={styles.heroTag}>One of a kind · Nürnberg Südstadt</div>
+        <h1 className={styles.heroTitle}>Good clothes,<br/>better prices.</h1>
+        <p className={styles.heroSub}>Every piece is unique. Once it's gone, it's gone. Browse, pick, and collect in person.</p>
       </header>
+
       {pickupSlots.length > 0 && (
         <div className={styles.pickupBanner}>
-          <span className={styles.pickupIcon}>📍</span>
-          <div>
-            <div className={styles.pickupTitle}>Pickup slots this week</div>
-            <div className={styles.slots}>
-              {pickupSlots.map(slot => <span key={slot.id} className={styles.slotPill}>{slot.label}</span>)}
-            </div>
+          <span className={styles.pickupTitle}>Pickup</span>
+          <div className={styles.slots}>
+            {pickupSlots.map(slot => <span key={slot.id} className={styles.slotPill}>{slot.label}</span>)}
           </div>
         </div>
       )}
+
       <div className={styles.filters}>
         {['all','women','men','new'].map(f => (
           <button key={f} className={styles.chip + (filter===f?' '+styles.chipActive:'')} onClick={() => setFilter(f)}>
@@ -59,10 +59,13 @@ export default function Home({ items, pickupSlots }) {
           </button>
         ))}
       </div>
+
       <main className={styles.grid}>
-        {filtered.length===0 ? <p className={styles.empty}>Nothing here yet.</p>
+        {filtered.length===0
+          ? <p className={styles.empty}>Nothing here yet.</p>
           : filtered.map(item => <ItemCard key={item.id} item={item} onAdd={addToCart} />)}
       </main>
+
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} cart={cart} onRemove={removeFromCart} pickupSlots={pickupSlots} />
       {toast && <div className={styles.toast}>{toast}</div>}
     </div>
