@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/CartDrawer.module.css';
-import RunawayButton from './RunawayButton';
 
 const PICKUP_ADDRESS = 'Wilhelmstrasse 8, 97421 Schweinfurt';
 
@@ -104,7 +103,7 @@ export default function CartDrawer({ open, onClose, cart, onRemove, pickupSlots 
                       </div>
                       <div className={styles.itemRight}>
                         <span className={styles.itemPrice}>€{Number(item.price).toFixed(2)}</span>
-                        <RunawayButton onConfirm={() => onRemove(item.id)} itemPrice={Number(item.price).toFixed(2)} />
+                        <button className={styles.removeBtn} onClick={() => onRemove(item.id)}>remove</button>
                       </div>
                     </div>
                   ))}
