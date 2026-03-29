@@ -231,3 +231,27 @@
   .filters { padding: 6px 8px 0; }
   .nav { padding: 4px 8px; }
 }
+
+.footer {
+  text-align: center;
+  padding: 16px 12px;
+  margin-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.footerLink {
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  text-decoration: underline;
+  font-family: 'Tahoma', sans-serif;
+}
+
+.footerLink:hover { color: rgba(255,255,255,0.8); }
+
+.footerSep { font-size: 10px; color: rgba(255,255,255,0.3); }
+
+.footerText { font-size: 10px; color: rgba(255,255,255,0.3); font-family: 'Tahoma', sans-serif; }

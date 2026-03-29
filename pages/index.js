@@ -88,6 +88,12 @@ export default function Home({ items, pickupSlots }) {
 
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} cart={cart} onRemove={removeFromCart} pickupSlots={pickupSlots} />
       {toast && <div className={styles.toast}>{toast}</div>}
+
+      <footer className={styles.footer}>
+        <a href="/legal" className={styles.footerLink}>Impressum & Datenschutz</a>
+        <span className={styles.footerSep}>·</span>
+        <span className={styles.footerText}>Private sale — Schweinfurt</span>
+      </footer>
     </div>
   );
 }
