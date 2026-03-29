@@ -95,7 +95,12 @@ export default function CartDrawer({ open, onClose, cart, onRemove, pickupSlots 
                 <div className={styles.items}>
                   {cart.map(item => (
                     <div key={item.id} className={styles.item}>
-                      <div>
+                      <div className={styles.itemThumb}>
+                        {item.images?.[0]
+                          ? <img src={item.images[0]} alt={item.name} className={styles.itemThumbImg} />
+                          : <div className={styles.itemThumbPlaceholder}>?</div>}
+                      </div>
+                      <div className={styles.itemInfo}>
                         <div className={styles.itemName}>{item.name}</div>
                         <div className={styles.itemMeta}>
                           {item.size ? 'Size ' + item.size + ' · ' : ''}{item.gender}
