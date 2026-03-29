@@ -70,3 +70,17 @@
 .cta { background: #1a6fd4; color: #fff; border: none; border-radius: 4px; padding: 14px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; width: 100%; transition: background 0.15s; }
 .cta:hover:not(:disabled) { background: #1560bb; }
 .cta:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.slotsInfo { margin-top: 20px; padding-top: 16px; border-top: 1px solid #1a1a1a; }
+.slotsInfoTitle { font-size: 11px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.slotsInfoList { display: flex; flex-direction: column; gap: 6px; }
+.slotsInfoPill { background: #161616; border: 1px solid #1e1e1e; border-radius: 4px; padding: 8px 12px; font-size: 12px; color: #888; }
+
+.fulfillmentOptions { display: flex; flex-direction: column; gap: 10px; }
+.fulfillOpt { display: flex; align-items: center; gap: 14px; border: 1px solid #222; border-radius: 4px; padding: 14px 16px; background: #161616; text-align: left; width: 100%; transition: all 0.15s; cursor: pointer; }
+.fulfillOpt:hover { border-color: #333; }
+.fulfillOptActive { border-color: #1a6fd4; background: #0d1e36; }
+.fulfillIcon { font-size: 20px; flex-shrink: 0; }
+.fulfillTitle { font-size: 14px; font-weight: 600; color: #e0e0e0; }
+.fulfillSub { font-size: 12px; color: #555; margin-top: 2px; }
+.fieldHint { font-size: 11px; color: #555; margin-top: 4px; }
