@@ -32,6 +32,14 @@ export default function ItemPage({ item }) {
     setTimeout(() => router.push('/'), 800);
   }
 
+  // Idle message after 30 seconds
+  const [idleMsg, setIdleMsg] = useState(false);
+  useState(() => {
+    if (item?.sold) return;
+    const t = setTimeout(() => setIdleMsg(true), 30000);
+    return () => clearTimeout(t);
+  });
+
   return (
     <>
       <Head>
@@ -103,14 +111,17 @@ export default function ItemPage({ item }) {
             </div>
 
             {!item.sold ? (
-              <button className={styles.addBtn + (added ? ' ' + styles.addBtnDone : '')} onClick={handleAddToBag} disabled={added}>
-                {added ? 'Added! Going back…' : 'Add to bag'}
-              </button>
+              <>
+                {idleMsg && !added && <p className={styles.idleMsg}>still here. it won't get cheaper.</p>}
+                <button className={styles.addBtn + (added ? ' ' + styles.addBtnDone : '')} onClick={handleAddToBag} disabled={added}>
+                  {added ? 'going back...' : 'add to bag'}
+                </button>
+              </>
             ) : (
-              <div className={styles.goneBtn}>This item is gone 👋</div>
+              <div className={styles.goneBtn}>this one's gone.</div>
             )}
 
-            <p className={styles.pickupNote}>📍 Pickup or delivery in Schweinfurt</p>
+            <p className={styles.pickupNote}>pickup or delivery. Schweinfurt only.</p>
           </div>
         </div>
 

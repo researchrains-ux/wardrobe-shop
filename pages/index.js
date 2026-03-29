@@ -30,9 +30,9 @@ export default function Home({ items, pickupSlots }) {
   }
 
   function addToCart(item) {
-    if (cart.find(i => i.id === item.id)) { showToast('Already in your bag'); return; }
+    if (cart.find(i => i.id === item.id)) { showToast('already in your bag'); return; }
     setCart(prev => [...prev, item]);
-    showToast(item.name + ' added to bag');
+    showToast('noted');
   }
 
   function removeFromCart(id) { setCart(prev => prev.filter(i => i.id !== id)); }
@@ -48,7 +48,7 @@ export default function Home({ items, pickupSlots }) {
           <div className={styles.brandSub}>Curated pieces · Schweinfurt pickup</div>
         </div>
         <button className={styles.cartBtn} onClick={() => setCartOpen(true)}>
-          Bag {cart.length > 0 && <span className={styles.cartBadge}>{cart.length}</span>}
+          {cart.length === 0 ? 'nothing here' : `Bag (${cart.length})`}
         </button>
       </nav>
 
@@ -81,7 +81,7 @@ export default function Home({ items, pickupSlots }) {
 
       <main className={styles.grid}>
         {filtered.length === 0
-          ? <p className={styles.empty}>Nothing here yet.</p>
+          ? <p className={styles.empty}>nothing here. check back.</p>
           : filtered.map(item => <ItemCard key={item.id} item={item} onAdd={addToCart} />)}
       </main>
 

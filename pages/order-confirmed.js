@@ -23,8 +23,8 @@ export default function OrderConfirmed() {
     <div className={styles.page}>
       <div className={styles.card}>
         <div className={styles.icon}>{method==='cash'?'📋':'✅'}</div>
-        <h1 className={styles.title + ' font-serif'}>{method==='cash'?'Reservation confirmed!':'Payment received!'}</h1>
-        <p className={styles.sub}>{method==='cash'?'Your items are reserved. Please bring cash to the pickup.':'Your order is confirmed and items are yours.'}</p>
+        <h1 className={styles.title}>{method==='cash'?'done. see you then.':'payment received.'}</h1>
+        <p className={styles.sub}>{method==='cash'?'locked in. pay when you show up. don\'t ghost.':'sorted. the items are yours.'}</p>
         <div className={styles.details}>
           <div className={styles.row}><span className={styles.rowLabel}>Name</span><span>{order.customer_name}</span></div>
           <div className={styles.row}><span className={styles.rowLabel}>Contact</span><span>{order.customer_contact}</span></div>

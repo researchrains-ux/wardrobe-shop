@@ -91,7 +91,7 @@ export default function CartDrawer({ open, onClose, cart, onRemove, pickupSlots 
 
           {/* STEP 1: Cart */}
           {step === 'cart' && (
-            cart.length === 0 ? <p className={styles.empty}>Your bag is empty.</p> : (
+            cart.length === 0 ? <p className={styles.empty}>nothing here.</p> : (
               <>
                 <div className={styles.items}>
                   {cart.map(item => (
@@ -104,7 +104,7 @@ export default function CartDrawer({ open, onClose, cart, onRemove, pickupSlots 
                       </div>
                       <div className={styles.itemRight}>
                         <span className={styles.itemPrice}>€{Number(item.price).toFixed(2)}</span>
-                        <RunawayButton onConfirm={() => onRemove(item.id)} />
+                        <RunawayButton onConfirm={() => onRemove(item.id)} itemPrice={Number(item.price).toFixed(2)} />
                       </div>
                     </div>
                   ))}
@@ -234,7 +234,7 @@ export default function CartDrawer({ open, onClose, cart, onRemove, pickupSlots 
                 </button>
                 <button className={styles.payOpt + (payMethod === 'cash' ? ' ' + styles.payOptActive : '')} onClick={() => setPayMethod('cash')}>
                   <span className={styles.payIcon}>💵</span>
-                  <div><div className={styles.payOptTitle}>Pay cash on {form.fulfillment === 'pickup' ? 'pickup' : 'delivery'}</div><div className={styles.payOptSub}>Reserve now, pay when you {form.fulfillment === 'pickup' ? 'collect' : 'receive'}</div></div>
+                  <div><div className={styles.payOptTitle}>Pay cash on {form.fulfillment === 'pickup' ? 'pickup' : 'delivery'}</div><div className={styles.payOptSub}>pay when you show up. don't ghost.</div></div>
                   <span className={styles.check}>{payMethod === 'cash' ? '✓' : ''}</span>
                 </button>
               </div>
@@ -256,7 +256,7 @@ export default function CartDrawer({ open, onClose, cart, onRemove, pickupSlots 
           )}
           {step === 'payment' && (
             <button className={styles.cta} onClick={handlePay} disabled={loading || !payMethod}>
-              {loading ? 'Please wait…' : payMethod === 'card' ? 'Pay €' + total.toFixed(2) + ' →' : 'Confirm reservation →'}
+              {loading ? 'hold on...' : payMethod === 'card' ? 'Pay €' + total.toFixed(2) + ' →' : 'lock it in →'}
             </button>
           )}
         </div>

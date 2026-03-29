@@ -1,34 +1,56 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from '../styles/RunawayButton.module.css';
 
 const MESSAGES = [
-  "C'mon, I really need to get rid of this 😭",
-  "It looked so good on the hanger tho...",
-  "Are you SURE sure? Like actually sure?",
-  "This is your last chance to reconsider bestie",
-  "Fine. FINE. I'll let you remove it. Rude.",
-  "You're really doing this to me right now?",
-  "The item is literally crying rn just so you know",
+  "bro really? that was a good find",
+  "you're actually doing this right now",
+  "the audacity is unreal",
+  "this item has been waiting for you specifically",
+  "ok but just so you know, this one won't come back",
+  "you'll be thinking about this at 3am",
+  "genuinely cannot believe what I'm witnessing",
+  "this is a mistake and deep down you know it",
+  "the item:",
+  "alright but don't come crying when it's gone",
 ];
 
-export default function RunawayButton({ onConfirm }) {
+export default function RunawayButton({ onConfirm, itemPrice }) {
   const [attempts, setAttempts] = useState(0);
   const [message, setMessage] = useState(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
-  const [isRunning, setIsRunning] = useState(false);
-  const btnRef = useRef();
+  const [surrendered, setSurrendered] = useState(false);
   const usedMessages = useRef([]);
 
+  const moneyMessages = [
+    `saving that €${itemPrice} for what exactly`,
+    `one less coffee and this was yours. just saying`,
+    `€${itemPrice} and you're hesitating. bold.`,
+  ];
+
+  const allMessages = [...MESSAGES, ...moneyMessages];
+
   function getRandomMessage() {
-    const unused = MESSAGES.filter(m => !usedMessages.current.includes(m));
-    const pool = unused.length > 0 ? unused : MESSAGES;
+    const unused = allMessages.filter(m => !usedMessages.current.includes(m));
+    const pool = unused.length > 0 ? unused : allMessages;
     const msg = pool[Math.floor(Math.random() * pool.length)];
-    usedMessages.current = [...usedMessages.current.slice(-3), msg];
+    usedMessages.current = [...usedMessages.current.slice(-4), msg];
     return msg;
   }
 
+  function getRandomPos() {
+    const directions = [
+      { x: 80 + Math.random() * 60, y: 0 },
+      { x: -(80 + Math.random() * 60), y: 0 },
+      { x: 40 + Math.random() * 40, y: -(20 + Math.random() * 20) },
+      { x: -(40 + Math.random() * 40), y: -(20 + Math.random() * 20) },
+      { x: 60 + Math.random() * 40, y: 20 + Math.random() * 15 },
+      { x: -(60 + Math.random() * 40), y: 20 + Math.random() * 15 },
+    ];
+    return directions[Math.floor(Math.random() * directions.length)];
+  }
+
   function handleClick() {
-    if (attempts >= 3) {
+    if (surrendered) {
       onConfirm();
       return;
     }
@@ -36,31 +58,29 @@ export default function RunawayButton({ onConfirm }) {
     const newAttempts = attempts + 1;
     setAttempts(newAttempts);
     setMessage(getRandomMessage());
-    setIsRunning(true);
 
-    const maxX = 160;
-    const maxY = 40;
-    const randX = (Math.random() - 0.5) * maxX;
-    const randY = (Math.random() - 0.5) * maxY;
-    setPos({ x: randX, y: randY });
-
-    setTimeout(() => {
+    if (newAttempts >= 3) {
       setPos({ x: 0, y: 0 });
-      setIsRunning(false);
-      setTimeout(() => setMessage(null), 1800);
-    }, 600);
+      setSurrendered(true);
+    } else {
+      setPos(getRandomPos());
+    }
   }
 
   return (
     <div className={styles.wrap}>
-      {message && <div className={styles.message}>{message}</div>}
+      {message && (
+        <div className={styles.message}>
+          {message}
+          {message === "the item:" && <span className={styles.heartbreak}> &nbsp;💔</span>}
+        </div>
+      )}
       <button
-        ref={btnRef}
-        className={styles.btn + (attempts >= 3 ? ' ' + styles.btnSurrendered : '') + (isRunning ? ' ' + styles.btnRunning : '')}
-        style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
+        className={styles.btn + (surrendered ? ' ' + styles.btnSurrendered : '')}
+        style={{ transform: `translate(${pos.x}px, ${pos.y}px)`, transition: attempts === 0 ? 'none' : 'transform 0.18s cubic-bezier(0.22, 1, 0.36, 1)' }}
         onClick={handleClick}
       >
-        {attempts >= 3 ? 'fine, remove it' : 'remove'}
+        {surrendered ? 'fine.' : attempts === 1 ? 'remove??' : attempts === 2 ? 'remove...' : 'remove'}
       </button>
     </div>
   );
