@@ -1,16 +1,16 @@
 .card {
-  background: #111;
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 8px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
 .card:hover:not(.sold) {
-  transform: translateY(-3px);
-  border-color: rgba(255,255,255,0.12);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(26,111,212,0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .sold { opacity: 0.45; }
@@ -19,7 +19,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 3/4;
-  background: #161616;
+  background: #f5f5f7;
   overflow: hidden;
 }
 
@@ -29,30 +29,35 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #141414;
+  background: #f5f5f7;
 }
 
-.emoji { font-size: 52px; opacity: 0.4; }
+.emoji { font-size: 52px; opacity: 0.25; }
+
+.badges { display: none; }
+.badge {}
+.badgeWomen {}
+.badgeMen {}
+.badgeMisc {}
+.badgeUnisex {}
 
 .newBadge {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: rgba(26,111,212,0.9);
+  background: #0071e3;
   color: #fff;
   padding: 3px 9px;
-  border-radius: 3px;
+  border-radius: 980px;
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  backdrop-filter: blur(4px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .soldOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(245,245,247,0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,10 +65,10 @@
 
 .soldLabel {
   font-size: 11px;
-  color: #555;
-  font-weight: 700;
+  color: #aeaeb2;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -72,21 +77,21 @@
 .soldLabel::before, .soldLabel::after {
   content: '';
   display: block;
-  width: 28px;
+  width: 24px;
   height: 1px;
-  background: #3a3a3a;
+  background: #d1d1d6;
 }
 
 .body {
   padding: 14px 16px 18px;
-  border-top: 1px solid rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(0,0,0,0.04);
 }
 
 .name {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-  color: #d0d0d0;
-  letter-spacing: 0.01em;
+  color: #1d1d1f;
+  letter-spacing: -0.01em;
   line-height: 1.4;
   white-space: nowrap;
   overflow: hidden;
@@ -94,15 +99,16 @@
 }
 
 .meta {
-  font-size: 11px;
-  color: #444;
+  font-size: 12px;
+  color: #aeaeb2;
   margin-top: 3px;
   display: flex;
-  gap: 6px;
+  gap: 5px;
   align-items: center;
 }
 
-.dot { color: #2a2a2a; }
+.dot { color: #d1d1d6; }
+.oneLeft {}
 
 .footer {
   display: flex;
@@ -112,44 +118,31 @@
 }
 
 .price {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 20px;
-  letter-spacing: 0.04em;
-  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.02em;
 }
 
 .addBtn {
-  background: rgba(26,111,212,0.15);
-  color: #5ba3f0;
-  border: 1px solid rgba(26,111,212,0.25);
-  border-radius: 4px;
-  padding: 5px 12px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all 0.15s;
-  font-family: inherit;
+  background: #f5f5f7;
+  color: #0071e3;
+  border: none;
+  border-radius: 980px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  letter-spacing: -0.01em;
 }
 
 .addBtn:hover {
-  background: #1a6fd4;
+  background: #0071e3;
   color: #fff;
-  border-color: #1a6fd4;
 }
 
 .goneText {
-  font-size: 11px;
-  color: #3a3a3a;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  color: #aeaeb2;
+  font-weight: 500;
 }
-
-.badges { display: none; }
-.badge {}
-.badgeWomen {}
-.badgeMen {}
-.badgeMisc {}
-.badgeUnisex {}
-.oneLeft {}

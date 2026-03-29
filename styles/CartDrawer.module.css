@@ -1,86 +1,92 @@
-.backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 99; }
+.backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 99; backdrop-filter: blur(2px); }
 
-.drawer { position: fixed; top: 0; right: -380px; width: 360px; max-width: 100vw; height: 100%; background: #0f0f0f; border-left: 1px solid #1e1e1e; z-index: 100; transition: right 0.3s ease; display: flex; flex-direction: column; overflow: hidden; }
+.drawer {
+  position: fixed; top: 0; right: -380px; width: 360px; max-width: 100vw; height: 100%;
+  background: #fff; border-left: 1px solid rgba(0,0,0,0.08); z-index: 100;
+  transition: right 0.3s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; overflow: hidden;
+}
 .drawer.open { right: 0; }
 
-.header { padding: 18px 20px; border-bottom: 1px solid #1e1e1e; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.header { padding: 18px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
 .headerLeft { display: flex; align-items: center; gap: 12px; }
-.title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.06em; color: #fff; }
-.backBtn { background: none; border: none; font-size: 12px; color: #555; padding: 0; transition: color 0.15s; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; }
-.backBtn:hover { color: #fff; }
-.closeBtn { background: none; border: 1px solid #222; border-radius: 4px; padding: 5px 10px; font-size: 12px; color: #555; transition: all 0.15s; }
-.closeBtn:hover { color: #fff; border-color: #444; }
+.title { font-size: 18px; font-weight: 600; color: #1d1d1f; letter-spacing: -0.02em; }
+.backBtn { background: none; border: none; font-size: 13px; color: #aeaeb2; padding: 0; transition: color 0.15s; font-weight: 500; letter-spacing: -0.01em; }
+.backBtn:hover { color: #1d1d1f; }
+.closeBtn { background: #f5f5f7; border: none; border-radius: 50%; width: 28px; height: 28px; font-size: 12px; color: #6e6e73; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+.closeBtn:hover { background: #e8e8ed; }
 
-.stepBar { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 12px 20px; border-bottom: 1px solid #1e1e1e; flex-shrink: 0; }
+.stepBar { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 12px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); flex-shrink: 0; }
 .stepDot { display: flex; align-items: center; gap: 7px; opacity: 0.3; transition: opacity 0.2s; }
 .stepActive { opacity: 1; }
-.stepNum { width: 22px; height: 22px; border-radius: 50%; background: #1e1e1e; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: #666; }
-.stepActive .stepNum { background: #1a6fd4; color: #fff; }
-.stepLabel { font-size: 12px; font-weight: 600; color: #888; letter-spacing: 0.04em; text-transform: uppercase; }
-.stepActive .stepLabel { color: #fff; }
+.stepNum { width: 22px; height: 22px; border-radius: 50%; background: #f5f5f7; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; color: #6e6e73; }
+.stepActive .stepNum { background: #0071e3; color: #fff; }
+.stepLabel { font-size: 12px; font-weight: 500; color: #6e6e73; letter-spacing: -0.01em; }
+.stepActive .stepLabel { color: #1d1d1f; }
 
 .body { flex: 1; overflow-y: auto; padding: 20px; }
-.empty { text-align: center; color: #444; padding: 48px 0; font-size: 14px; letter-spacing: 0.04em; }
+.empty { text-align: center; color: #aeaeb2; padding: 48px 0; font-size: 15px; font-weight: 400; letter-spacing: -0.01em; }
 
 .items { display: flex; flex-direction: column; }
-.item { display: flex; justify-content: space-between; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid #1a1a1a; }
-.itemName { font-size: 14px; font-weight: 600; color: #e0e0e0; }
-.itemMeta { font-size: 12px; color: #555; margin-top: 3px; }
+.item { display: flex; justify-content: space-between; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+.itemName { font-size: 14px; font-weight: 500; color: #1d1d1f; letter-spacing: -0.01em; }
+.itemMeta { font-size: 12px; color: #aeaeb2; margin-top: 3px; }
 .itemRight { text-align: right; flex-shrink: 0; margin-left: 12px; }
-.itemPrice { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #fff; display: block; letter-spacing: 0.04em; }
-.removeBtn { background: none; border: none; font-size: 11px; color: #444; padding: 0; margin-top: 4px; text-decoration: underline; transition: color 0.15s; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
-.removeBtn:hover { color: #888; }
-.total { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 16px; font-size: 13px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.06em; border-top: 1px solid #222; }
+.itemPrice { font-size: 15px; font-weight: 600; color: #1d1d1f; display: block; letter-spacing: -0.02em; }
+.removeBtn { background: none; border: none; font-size: 11px; color: #aeaeb2; padding: 0; margin-top: 4px; text-decoration: underline; text-underline-offset: 2px; transition: color 0.15s; font-weight: 500; letter-spacing: -0.01em; }
+.removeBtn:hover { color: #1d1d1f; }
+.total { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 16px; font-size: 15px; font-weight: 600; color: #1d1d1f; border-top: 1px solid rgba(0,0,0,0.06); letter-spacing: -0.02em; }
+
+.slotsInfo { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.06); }
+.slotsInfoTitle { font-size: 11px; font-weight: 600; color: #aeaeb2; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+.slotsInfoList { display: flex; flex-direction: column; gap: 6px; }
+.slotsInfoPill { background: #f5f5f7; border-radius: 8px; padding: 9px 12px; font-size: 13px; color: #6e6e73; font-weight: 400; letter-spacing: -0.01em; }
 
 .form { display: flex; flex-direction: column; gap: 20px; }
 .field { display: flex; flex-direction: column; gap: 7px; }
-.label { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.08em; }
-.input { border: 1px solid #222; border-radius: 4px; padding: 11px 12px; font-size: 14px; color: #e0e0e0; background: #161616; outline: none; transition: border-color 0.15s; width: 100%; }
-.input:focus { border-color: #1a6fd4; }
-.input::placeholder { color: #444; }
-.select { border: 1px solid #222; border-radius: 4px; padding: 11px 12px; font-size: 14px; color: #e0e0e0; background: #161616; outline: none; width: 100%; }
+.label { font-size: 12px; font-weight: 600; color: #1d1d1f; letter-spacing: -0.01em; }
+.input { border: 1px solid rgba(0,0,0,0.12); border-radius: 8px; padding: 11px 12px; font-size: 14px; color: #1d1d1f; background: #fff; outline: none; transition: border-color 0.15s, box-shadow 0.15s; width: 100%; }
+.input:focus { border-color: #0071e3; box-shadow: 0 0 0 3px rgba(0,113,227,0.1); }
+.input::placeholder { color: #aeaeb2; }
+.select { border: 1px solid rgba(0,0,0,0.12); border-radius: 8px; padding: 11px 12px; font-size: 14px; color: #1d1d1f; background: #fff; outline: none; width: 100%; }
 .contactRow { display: flex; gap: 8px; }
 .contactRow .input { flex: 1; }
-.slotOptions { display: flex; flex-direction: column; gap: 8px; }
-.slotOpt { display: flex; flex-direction: column; gap: 3px; border: 1px solid #222; border-radius: 4px; padding: 12px 14px; cursor: pointer; transition: all 0.15s; background: #161616; }
-.slotOpt:hover { border-color: #333; }
-.slotOptActive { border-color: #1a6fd4; background: #0d1e36; }
-.radioHidden { display: none; }
-.slotOptLabel { font-size: 14px; font-weight: 600; color: #e0e0e0; }
-.slotOptLoc { font-size: 12px; color: #555; }
-.noSlots { font-size: 13px; color: #555; font-style: italic; }
-
-.payStep { display: flex; flex-direction: column; gap: 20px; }
-.orderSummary { background: #161616; border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; border: 1px solid #1e1e1e; }
-.summaryRow { display: flex; justify-content: space-between; font-size: 13px; color: #666; }
-.summaryTotal { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #fff; letter-spacing: 0.04em; }
-.payLabel { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.08em; }
-.payOptions { display: flex; flex-direction: column; gap: 10px; }
-.payOpt { display: flex; align-items: center; gap: 14px; border: 1px solid #222; border-radius: 4px; padding: 14px 16px; background: #161616; text-align: left; width: 100%; transition: all 0.15s; }
-.payOpt:hover { border-color: #333; }
-.payOptActive { border-color: #1a6fd4; background: #0d1e36; }
-.payIcon { font-size: 20px; flex-shrink: 0; }
-.payOptTitle { font-size: 14px; font-weight: 600; color: #e0e0e0; }
-.payOptSub { font-size: 12px; color: #555; margin-top: 2px; }
-.check { margin-left: auto; font-size: 14px; color: #1a6fd4; font-weight: 700; min-width: 16px; }
-
-.error { font-size: 13px; color: #e05555; background: #1a0f0f; border-radius: 4px; padding: 10px 12px; border: 1px solid #3a1a1a; }
-
-.footer { padding: 16px 20px; border-top: 1px solid #1e1e1e; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
-.cta { background: #1a6fd4; color: #fff; border: none; border-radius: 4px; padding: 14px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; width: 100%; transition: background 0.15s; }
-.cta:hover:not(:disabled) { background: #1560bb; }
-.cta:disabled { opacity: 0.3; cursor: not-allowed; }
-
-.slotsInfo { margin-top: 20px; padding-top: 16px; border-top: 1px solid #1a1a1a; }
-.slotsInfoTitle { font-size: 11px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
-.slotsInfoList { display: flex; flex-direction: column; gap: 6px; }
-.slotsInfoPill { background: #161616; border: 1px solid #1e1e1e; border-radius: 4px; padding: 8px 12px; font-size: 12px; color: #888; }
 
 .fulfillmentOptions { display: flex; flex-direction: column; gap: 10px; }
-.fulfillOpt { display: flex; align-items: center; gap: 14px; border: 1px solid #222; border-radius: 4px; padding: 14px 16px; background: #161616; text-align: left; width: 100%; transition: all 0.15s; cursor: pointer; }
-.fulfillOpt:hover { border-color: #333; }
-.fulfillOptActive { border-color: #1a6fd4; background: #0d1e36; }
+.fulfillOpt { display: flex; align-items: center; gap: 14px; border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 14px 16px; background: #fff; text-align: left; width: 100%; transition: all 0.15s; cursor: pointer; }
+.fulfillOpt:hover { border-color: rgba(0,0,0,0.2); }
+.fulfillOptActive { border-color: #0071e3; background: #f0f7ff; box-shadow: 0 0 0 3px rgba(0,113,227,0.08); }
 .fulfillIcon { font-size: 20px; flex-shrink: 0; }
-.fulfillTitle { font-size: 14px; font-weight: 600; color: #e0e0e0; }
-.fulfillSub { font-size: 12px; color: #555; margin-top: 2px; }
-.fieldHint { font-size: 11px; color: #555; margin-top: 4px; }
+.fulfillTitle { font-size: 14px; font-weight: 500; color: #1d1d1f; letter-spacing: -0.01em; }
+.fulfillSub { font-size: 12px; color: #aeaeb2; margin-top: 2px; }
+.fieldHint { font-size: 11px; color: #aeaeb2; margin-top: 4px; }
+
+.slotOptions { display: flex; flex-direction: column; gap: 8px; }
+.slotOpt { display: flex; flex-direction: column; gap: 3px; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; padding: 12px 14px; cursor: pointer; transition: all 0.15s; background: #fff; }
+.slotOpt:hover { border-color: rgba(0,0,0,0.2); }
+.slotOptActive { border-color: #0071e3; background: #f0f7ff; }
+.radioHidden { display: none; }
+.slotOptLabel { font-size: 14px; font-weight: 500; color: #1d1d1f; letter-spacing: -0.01em; }
+.slotOptLoc { font-size: 12px; color: #aeaeb2; }
+.noSlots { font-size: 13px; color: #aeaeb2; }
+
+.payStep { display: flex; flex-direction: column; gap: 20px; }
+.orderSummary { background: #f5f5f7; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.summaryRow { display: flex; justify-content: space-between; font-size: 14px; color: #6e6e73; letter-spacing: -0.01em; }
+.summaryTotal { font-size: 17px; font-weight: 600; color: #1d1d1f; letter-spacing: -0.02em; }
+.payLabel { font-size: 12px; font-weight: 600; color: #1d1d1f; letter-spacing: -0.01em; }
+.payOptions { display: flex; flex-direction: column; gap: 10px; }
+.payOpt { display: flex; align-items: center; gap: 14px; border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 14px 16px; background: #fff; text-align: left; width: 100%; transition: all 0.15s; }
+.payOpt:hover { border-color: rgba(0,0,0,0.2); }
+.payOptActive { border-color: #0071e3; background: #f0f7ff; box-shadow: 0 0 0 3px rgba(0,113,227,0.08); }
+.payIcon { font-size: 20px; flex-shrink: 0; }
+.payOptTitle { font-size: 14px; font-weight: 500; color: #1d1d1f; letter-spacing: -0.01em; }
+.payOptSub { font-size: 12px; color: #aeaeb2; margin-top: 2px; }
+.check { margin-left: auto; font-size: 14px; color: #0071e3; font-weight: 600; min-width: 16px; }
+
+.error { font-size: 13px; color: #c0392b; background: #fdf0ee; border-radius: 8px; padding: 10px 12px; }
+
+.footer { padding: 16px 20px; border-top: 1px solid rgba(0,0,0,0.06); flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
+.cta { background: #0071e3; color: #fff; border: none; border-radius: 980px; padding: 14px; font-size: 15px; font-weight: 500; width: 100%; transition: all 0.2s ease; letter-spacing: -0.01em; }
+.cta:hover:not(:disabled) { background: #0077ed; }
+.cta:active:not(:disabled) { transform: scale(0.98); }
+.cta:disabled { opacity: 0.35; cursor: not-allowed; }
