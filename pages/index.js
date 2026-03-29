@@ -4,17 +4,30 @@ import ItemCard from '../components/ItemCard';
 import CartDrawer from '../components/CartDrawer';
 import styles from '../styles/Shop.module.css';
 
+const SUBCATEGORIES = {
+  men: ['Tops', 'Outerwear', 'Bottoms', 'Footwear', 'Accessories'],
+  women: ['Tops', 'Outerwear', 'Bottoms', 'Dresses', 'Footwear', 'Accessories'],
+};
+
 export default function Home({ items, pickupSlots }) {
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [filter, setFilter] = useState('all');
+  const [subFilter, setSubFilter] = useState(null);
   const [toast, setToast] = useState(null);
 
   const filtered = items.filter(item => {
     if (filter === 'all') return true;
     if (filter === 'miscellaneous') return item.gender === 'miscellaneous';
-    return item.gender === filter;
+    if (item.gender !== filter) return false;
+    if (subFilter) return item.category?.toLowerCase() === subFilter.toLowerCase();
+    return true;
   });
+
+  function setMainFilter(f) {
+    setFilter(f);
+    setSubFilter(null);
+  }
 
   function addToCart(item) {
     if (cart.find(i => i.id === item.id)) { showToast('Already in your bag'); return; }
@@ -24,6 +37,8 @@ export default function Home({ items, pickupSlots }) {
 
   function removeFromCart(id) { setCart(prev => prev.filter(i => i.id !== id)); }
   function showToast(msg) { setToast(msg); setTimeout(() => setToast(null), 2500); }
+
+  const showSubs = (filter === 'men' || filter === 'women') && SUBCATEGORIES[filter];
 
   return (
     <div className={styles.page}>
@@ -45,11 +60,24 @@ export default function Home({ items, pickupSlots }) {
 
       <div className={styles.filters}>
         {['all', 'women', 'men', 'miscellaneous'].map(f => (
-          <button key={f} className={styles.chip + (filter === f ? ' ' + styles.chipActive : '')} onClick={() => setFilter(f)}>
+          <button key={f} className={styles.chip + (filter === f ? ' ' + styles.chipActive : '')} onClick={() => setMainFilter(f)}>
             {f === 'all' ? 'All' : f === 'miscellaneous' ? 'Misc' : f.charAt(0).toUpperCase() + f.slice(1)}
           </button>
         ))}
       </div>
+
+      {showSubs && (
+        <div className={styles.subFilters}>
+          <button className={styles.subChip + (!subFilter ? ' ' + styles.subChipActive : '')} onClick={() => setSubFilter(null)}>
+            All {filter === 'men' ? 'Men' : 'Women'}
+          </button>
+          {SUBCATEGORIES[filter].map(s => (
+            <button key={s} className={styles.subChip + (subFilter === s ? ' ' + styles.subChipActive : '')} onClick={() => setSubFilter(s)}>
+              {s}
+            </button>
+          ))}
+        </div>
+      )}
 
       <main className={styles.grid}>
         {filtered.length === 0
