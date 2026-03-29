@@ -1,37 +1,92 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap');
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #f5f5f7;
-  --bg-card: #ffffff;
-  --bg-nav: rgba(255,255,255,0.82);
-  --border: rgba(0,0,0,0.08);
-  --border-mid: rgba(0,0,0,0.12);
-  --text-primary: #1d1d1f;
-  --text-secondary: #6e6e73;
-  --text-faint: #aeaeb2;
-  --blue: #0071e3;
-  --blue-hover: #0077ed;
-  --blue-light: #e8f1fd;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.06);
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --xp-desktop: #3a6ea5;
+  --xp-taskbar: #245cdb;
+  --xp-taskbar-end: #1941a5;
+  --xp-silver: #d4d0c8;
+  --xp-silver-dark: #aca899;
+  --xp-silver-light: #f0ede8;
+  --xp-window: #ffffff;
+  --xp-titlebar: #0054e3;
+  --xp-titlebar-end: #2d8fff;
+  --xp-border-light: #ffffff;
+  --xp-border-dark: #808080;
+  --xp-border-darker: #404040;
+  --xp-text: #000000;
+  --xp-text-muted: #555555;
+  --xp-blue: #0054e3;
+  --xp-green: #0c9f0c;
+  --xp-btn-face: #d4d0c8;
+  --xp-btn-shadow: #808080;
+  --xp-btn-highlight: #ffffff;
+  --xp-btn-dark: #404040;
+  --font: 'Tahoma', 'MS Sans Serif', sans-serif;
 }
 
 html {
   font-family: var(--font);
-  font-size: 16px;
-  color: var(--text-primary);
-  background: var(--bg);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-size: 11px;
+  color: var(--xp-text);
+  background: var(--xp-desktop);
+  -webkit-font-smoothing: none;
+  image-rendering: auto;
 }
 
-body { min-height: 100vh; background: var(--bg); }
+body {
+  min-height: 100vh;
+  background-color: #3a6ea5;
+  background-image: url('https://upload.wikimedia.org/wikipedia/en/8/8e/Windowsxp.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+@media (max-width: 680px) {
+  body {
+    background-image: none;
+    background-color: #3a6ea5;
+  }
+}
+
 a { color: inherit; text-decoration: none; }
-button { cursor: pointer; font-family: inherit; }
-input, select, textarea { font-family: inherit; }
+button { cursor: pointer; font-family: var(--font); font-size: 11px; }
+input, select, textarea { font-family: var(--font); font-size: 11px; }
+
+/* XP raised button effect */
+.xp-btn {
+  background: var(--xp-btn-face);
+  border-top: 1px solid var(--xp-btn-highlight);
+  border-left: 1px solid var(--xp-btn-highlight);
+  border-right: 1px solid var(--xp-btn-dark);
+  border-bottom: 1px solid var(--xp-btn-dark);
+  padding: 3px 10px;
+  color: var(--xp-text);
+  cursor: pointer;
+}
+
+.xp-btn:active {
+  border-top: 1px solid var(--xp-btn-dark);
+  border-left: 1px solid var(--xp-btn-dark);
+  border-right: 1px solid var(--xp-btn-highlight);
+  border-bottom: 1px solid var(--xp-btn-highlight);
+}
+
+/* XP window border */
+.xp-window {
+  background: var(--xp-window);
+  border-top: 2px solid var(--xp-btn-highlight);
+  border-left: 2px solid var(--xp-btn-highlight);
+  border-right: 2px solid var(--xp-btn-dark);
+  border-bottom: 2px solid var(--xp-btn-dark);
+  outline: 1px solid var(--xp-btn-shadow);
+}
+
+.xp-inset {
+  border-top: 1px solid var(--xp-btn-shadow);
+  border-left: 1px solid var(--xp-btn-shadow);
+  border-right: 1px solid var(--xp-btn-highlight);
+  border-bottom: 1px solid var(--xp-btn-highlight);
+}
